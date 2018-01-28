@@ -8,6 +8,7 @@ const Promise = require('bluebird'),
 function getRequestOptions(options) {
 	const queryParameters = Object.assign({}, QUERY_PARAMETERS);
 	queryParameters.term = options.name;
+	queryParameters.media = options.type;
 	const headers = Object.assign({}, HEADERS);
 	const params = {
 		uri: URI,
@@ -51,8 +52,8 @@ function transformResponseData(response) {
 	return computedData;
 }
 
-function getData(name) {
-	const options = getRequestOptions({ name });
+function getData(type, name) {
+	const options = getRequestOptions({ type, name });
 
 	return request(options)
 		.then(transformResponseData)
@@ -70,14 +71,13 @@ server.get(
 );
 
 server.get('/', function(req, res, next) {
-	res.send('home');
-	return next();
+	res.redirect('/public/index.html', next);
 });
 
 server.get('/search/:type/:name', function(req, res, next) {
 	const { type, name } = req.params;
 
-	getData(name)
+	getData(type, name)
 		.then(data => res.send(data))
 		.finally(() => {
 			next();
@@ -85,5 +85,5 @@ server.get('/search/:type/:name', function(req, res, next) {
 });
 
 server.listen(8000, function() {
-	console.log('%s Restify server listening at %s', server.name, server.url);
+	console.log('%s server listening at %s', server.name, server.url);
 });

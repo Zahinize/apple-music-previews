@@ -4,6 +4,7 @@
 		this.W = W;
 		this.document = this.W.document;
 		this.input = this.document.querySelector('.js-input-field');
+		this.songsCountDropDown = this.document.querySelector('.js-songs-count-dropdown');
 		this.button = this.document.querySelector('.js-input-button');
 		this.layoutWrapper = this.document.querySelector('.js-layout-wrapper');
 		this.contentPlaceHolder = this.document.querySelector('.js-content-placeholder');
@@ -41,14 +42,18 @@
 	};
 	Class.prototype.loadMusicUI = function() {
 		var fragment = this.document.createDocumentFragment(),
-			_ref = this;
+			_ref = this,
+			songsCount = Number(_ref.songsCountDropDown.value),
+			iterator = 0;
 
-		this.model.forEach(function(dataObject) {
-			var element = document.createElement('div');
+		for (iterator; iterator < songsCount; iterator++) {
+			var element = document.createElement('div'),
+				dataObject = this.model[iterator];
+
 			element.innerHTML = dataObject.iframeTag;
 			element.firstChild.className += 'u-margin-b1';
 			fragment.appendChild(element.firstChild);
-		});
+		}
 
 		this.layoutWrapper.appendChild(fragment);
 		setTimeout(function() {

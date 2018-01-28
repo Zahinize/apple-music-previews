@@ -14,12 +14,22 @@
     <main class="wrapper wrapper--site">
         <header class="site-header u-padding-v2 u-padding-h0 u-padding-h3--sm">
             <h1 class="heading heading--h1 aligner aligner--hCenter aligner--vCenter u-margin-b3">Apple Music Previews</h1>
-            <h3 style="color: #8e8e93;" class="heading heading--h4 aligner aligner--hCenter aligner--vCenter u-margin-t0 u-margin-b4">Get 25 popular song previews of any listed artist</h3>
+            <h3 class="heading heading--h4 site-header--sub aligner aligner--hCenter aligner--vCenter u-margin-t0 u-margin-b4">Get 25 popular song
+                <br> previews of any listed artist</h3>
         </header>
         <div class="site-content u-padding-v2 u-padding-h0 u-padding-h6--sm">
             <div class="input-group aligner aligner--row u-margin-b4">
-                <input class="input-group-field aligner-item aligner-item--grow5 js-input-field" placeholder="Search for an artist, e.g., Mohd Rafi, John Lennon, Michael Jackson"
-                    type="text" value="">
+                <input class="input-group-field aligner-item aligner-item--grow5 js-input-field" title="Search for an artist, e.g., Mohd Rafi, John Lennon, Michael Jackson"
+                    placeholder="Search for an artist, e.g., Mohd Rafi, John Lennon, Michael Jackson" type="text" value="">
+                <div class="dropdown-wrapper aligner-item aligner aligner--row">
+                    <select class="dropdown aligner-item js-songs-count-dropdown">
+                        <option selected value="5">Load 5 Songs</option>
+                        <option value="10">Load 10 Songs</option>
+                        <option value="15">Load 15 Songs</option>
+                        <option value="20">Load 20 Songs</option>
+                        <option value="25">Load 25 Songs</option>
+                    </select>
+                </div>
                 <button class="input-group-button aligner-item u-cursor-pointer js-input-button">Search</button>
             </div>
             <div style="display: none;" class="layout-wrapper-overlay aligner aligner--hCenter aligner--vCenter js-loader-overlay">

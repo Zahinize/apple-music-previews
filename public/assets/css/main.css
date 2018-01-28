@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-html,
-body {
+* {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
+}
+
+html,
+body {
 	color: #000;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: 1rem;
@@ -14,22 +17,19 @@ body {
 	background: #fff;
 }
 
-.wrapper.wrapper--site .heading {
+.heading {
 	font-family: 'Roboto', sans-serif;
 }
-.wrapper.wrapper--site .heading.heading--h1 {
+.heading.heading--h1 {
 	color: #000;
-	background: -webkit-linear-gradient(150deg, #ed364b, #ee519c, #e13edc, #aa34df, #7f37e0, #693ce1);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
 	font-size: 4rem;
 	line-height: 1em;
 }
-.wrapper.wrapper--site .heading.heading--h2 {
+.heading.heading--h2 {
 	font-size: 2rem;
 	line-height: 1em;
 }
-.wrapper.wrapper--site .heading.heading--h3 {
+.heading.heading--h3 {
 	font-size: 1.5rem;
 	line-height: 1em;
 }
@@ -42,6 +42,32 @@ body {
 	font-size: 1.5rem;
 	outline: none;
 }
+.dropdown-wrapper {
+	background: #000;
+	color: #fff;
+	flex: 1.2 !important;
+	height: 100%;
+	padding: 0.5rem;
+	outline: 0;
+}
+.dropdown-wrapper > .dropdown {
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	color: inherit;
+	font-size: inherit;
+	height: 100%;
+	outline: 0;
+}
+
+.site-header--sub > br {
+	display: none;
+}
+.site-header--sub,
+.layout-wrapper-placeholder {
+	color: #8e8e93;
+	text-align: center;
+}
 
 .input-group-field {
 	border: 1px solid rgba(8, 40, 51, 0.2);
@@ -49,8 +75,8 @@ body {
 	padding: 0.5rem 1rem;
 }
 .input-group-button {
-	background: #000;
-	border: 1px solid #000;
+	background: #ff2d55;
+	border: 1px solid #ff2d55;
 	color: #fff;
 }
 .layout-wrapper-placeholder {
@@ -130,11 +156,21 @@ body {
 }
 
 @media (max-width: 768px) {
+	.site-header--sub > br {
+		display: block;
+	}
+	.site-header--sub,
+	.layout-wrapper-placeholder {
+		line-height: 1.5em;
+	}
 	.wrapper.wrapper--site .heading.heading--h1 {
 		font-size: 2rem;
 	}
 	.input-group-field,
 	.input-group-button {
 		font-size: 1rem;
+	}
+	.dropdown-wrapper {
+		font-size: 0.75rem;
 	}
 }
