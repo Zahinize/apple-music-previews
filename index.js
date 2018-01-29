@@ -1,7 +1,7 @@
 const Promise = require('bluebird'),
 	_ = require('lodash'),
 	request = require('request-promise'),
-	{ HEADERS, QUERY_PARAMETERS, URI } = require('./configs/config'),
+	{ HEADERS, QUERY_PARAMETERS, URI, IFRAME_HEIGHT } = require('./configs/config'),
 	restify = require('restify'),
 	server = restify.createServer();
 
@@ -19,24 +19,27 @@ function getRequestOptions(options) {
 	return params;
 }
 
-function reduceResponseData(inputData) {
+function reduceResponseData(mediaType, inputData) {
 	return inputData.items.reduce((collection, itemObject) => {
-		const computedObject = {
-			curators: itemObject.artistOrCuratorName,
-			id: itemObject.id,
-			name: itemObject.name,
-			posterSrc: itemObject.resultImage,
-			iframeTag: `<iframe src="https://tools.applemusic.com/embed/v1/song/${
-				itemObject.id
-			}?country=us&itscg=30200&itsct=afftoolset_1" height="110px" width="100%" frameborder="0"></iframe>`
-		};
+		const computedMediaType = mediaType.substr(0, mediaType.length - 1),
+			iframeHeight = IFRAME_HEIGHT.height[mediaType],
+			iframeBottomMargin = IFRAME_HEIGHT.margin[mediaType],
+			computedObject = {
+				curators: itemObject.artistOrCuratorName,
+				id: itemObject.id,
+				name: itemObject.name,
+				posterSrc: itemObject.resultImage,
+				iframeTag: `<iframe class="${iframeBottomMargin}" src="https://tools.applemusic.com/embed/v1/${computedMediaType}/${
+					itemObject.id
+				}?country=us&itscg=30200&itsct=afftoolset_1" height="${iframeHeight}" width="100%" frameborder="0"></iframe>`
+			};
 
 		collection.push(computedObject);
 		return collection;
 	}, []);
 }
 
-function transformResponseData(response) {
+function transformResponseData(mediaType, response) {
 	let computedData;
 	let intermediateString = response.split(`append(bubbleTemplate(`)[1].split(')).')[0];
 
@@ -48,7 +51,7 @@ function transformResponseData(response) {
 		.replace(/" \/>/g, "'/>");
 
 	computedData = JSON.parse(intermediateString);
-	computedData = reduceResponseData(computedData);
+	computedData = reduceResponseData(mediaType, computedData);
 	return computedData;
 }
 
@@ -56,7 +59,7 @@ function getData(type, name) {
 	const options = getRequestOptions({ type, name });
 
 	return request(options)
-		.then(transformResponseData)
+		.then(transformResponseData.bind(null, type))
 		.catch(err => {
 			console.log(`Got Error while fetching data: ${err}`);
 			return {};

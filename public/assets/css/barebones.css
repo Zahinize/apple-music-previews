@@ -882,6 +882,13 @@
 	-ms-flex: 1;
 	flex: 1;
 }
+.aligner .aligner-item.aligner-item--growHalf {
+	-webkit-box-flex: 0.5;
+	-webkit-flex: 0.5;
+	-ms-flex: 0.5;
+	flex: 0.5;
+}
+
 .aligner .aligner-item.aligner-item--grow2 {
 	-webkit-box-flex: 2;
 	-webkit-flex: 2;

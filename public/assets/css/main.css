@@ -13,7 +13,21 @@ body {
 	position: relative;
 }
 
-body {
+/*****Utility Classes*****/
+.u-bg-color-primary {
+	background: #ff2d55;
+}
+.u-bg-color-secondary {
+	background: #d70029;
+}
+.u-bg-color-tertiary {
+	background: #820019;
+}
+.u-bg-color-black {
+	background: #000;
+}
+
+.u-bg-color-white {
 	background: #fff;
 }
 
@@ -43,11 +57,8 @@ body {
 	outline: none;
 }
 .dropdown-wrapper {
-	background: #000;
 	color: #fff;
-	flex: 1.2 !important;
 	height: 100%;
-	padding: 0.5rem;
 	outline: 0;
 }
 .dropdown-wrapper > .dropdown {
@@ -75,7 +86,6 @@ body {
 	padding: 0.5rem 1rem;
 }
 .input-group-button {
-	background: #ff2d55;
 	border: 1px solid #ff2d55;
 	color: #fff;
 }
@@ -90,7 +100,7 @@ body {
 	position: relative;
 }
 
-/**CSS LOADER**/
+/*****CSS LOADER*****/
 .loader {
 	font-size: 10px;
 	margin: 50px auto;

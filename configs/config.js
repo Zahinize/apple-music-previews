@@ -25,8 +25,20 @@ const QUERY_PARAMETERS = {
 
 const URI = 'http://tools.applemusic.com/en-us/search';
 
+const IFRAME_HEIGHT = {
+	height: {
+		songs: '100px',
+		playlists: '550px'
+	},
+	margin: {
+		songs: 'u-margin-b1',
+		playlists: 'u-margin-b3'
+	}
+};
+
 module.exports = {
 	HEADERS,
 	QUERY_PARAMETERS,
-	URI
+	URI,
+	IFRAME_HEIGHT
 };
